@@ -75,7 +75,7 @@ const NavigationLinks: React.FC = () => {
         <Link href="/">Home</Link>
       </li>
       <li>
-        <Link href="/users">My Projects</Link>
+        <Link href="/projects">My Projects</Link>
       </li>
       <li>
         <Link href="/newProject" className="bg-green-300">
