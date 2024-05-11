@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import logo from "src/app/assets/logos/Cobuild_Logo.svg";
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
   return (
     <nav className="navbar bg-base-100">
       <div className="navbar-start">
@@ -21,7 +21,7 @@ const Navbar: React.FC = () => {
   );
 };
 
-const BurgerMenu: React.FC = () => {
+const BurgerMenu = () => {
   return (
     <div className="dropdown dropdown-hover">
       <button
@@ -63,7 +63,7 @@ const BurgerMenu: React.FC = () => {
   );
 };
 
-const Logo: React.FC = () => {
+const Logo = () => {
   return (
     <div>
       <Link href="/">
@@ -73,7 +73,7 @@ const Logo: React.FC = () => {
   );
 };
 
-const NavigationLinks: React.FC = () => {
+const NavigationLinks = () => {
   return (
     <ul className="menu menu-horizontal gap-4 text-xs font-semibold">
       <li>
@@ -91,7 +91,7 @@ const NavigationLinks: React.FC = () => {
   );
 };
 
-const UserProfile: React.FC = () => {
+const UserProfile = () => {
   return (
     <div className="flex-none gap-2">
       <div className="form-control"></div>
