@@ -53,7 +53,7 @@ const BurgerMenu: React.FC = () => {
           <Link href="/">Home</Link>
         </li>
         <li>
-          <Link href="/projects">My Projects</Link>
+          <Link href="/projects">Projects</Link>
         </li>
         <li>
           <Link href="/newProject">Create New Project</Link>
@@ -80,7 +80,7 @@ const NavigationLinks: React.FC = () => {
         <Link href="/">Home</Link>
       </li>
       <li>
-        <Link href="/projects">My Projects</Link>
+        <Link href="/projects">Projects</Link>
       </li>
       <li>
         <Link href="/newProject" className="bg-green-300">
