@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
 
 const BurgerMenu: React.FC = () => {
   return (
-    <div className="dropdown">
+    <div className="dropdown dropdown-hover">
       <button
         tabIndex={0}
         role="button"
@@ -53,7 +53,7 @@ const BurgerMenu: React.FC = () => {
           <Link href="/">Home</Link>
         </li>
         <li>
-          <Link href="/users">My Projects</Link>
+          <Link href="/projects">My Projects</Link>
         </li>
         <li>
           <Link href="/newProject">Create New Project</Link>
@@ -95,7 +95,7 @@ const UserProfile: React.FC = () => {
   return (
     <div className="flex-none gap-2">
       <div className="form-control"></div>
-      <div className="dropdown dropdown-end">
+      <div className="dropdown dropdown-end dropdown-hover">
         <button
           tabIndex={0}
           role="button"
