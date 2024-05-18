@@ -37,7 +37,6 @@ jobs:
         run: echo "Linked issues - ${{ steps.check-linked-issues.outputs.linked_issues_count }} found."
 
       - name: Create comment from markdown file
-        if: steps.check-linked-issues.outputs.linked_issues_count < 1
         uses: GrantBirki/comment@v2.0.10
         with:
           file: demo/plain-sample.md
