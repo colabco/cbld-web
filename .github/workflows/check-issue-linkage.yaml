@@ -10,30 +10,22 @@ jobs:
       issues: read
       pull-requests: write
     steps:
-      - run: |
-          MESSAGE_STR=$(cat << EOF
-          :wave: Hey, looks like you forgot to [link an issue!](https://docs.github.com/en/enterprise-cloud@latest/get-started/writing-on-github/working-with-advanced-formatting/using-keywords-in-issues-and-pull-requests#linking-a-pull-request-to-an-issue).
-          Please visit the link above to learn how to do so.
-
-          :warning: Note - This is to ensure that merging your PR will  **automatically close an issue**.
-          If you do NOT want related issue(s) to automatically close, do not use any of the keywords specified in the given link above.
-          _You can still reference a related issue using `#` without using keywords which would cause the issue to not automatically close, eg 'this PR is related to #789'_.
-
-          Reach out to project admins if you have any questions! :)
-          EOF
-          )
-          echo "::set-output name=content::$MESSAGE_STR"
-        id: friendly_reminder
-      - name: display string
-        run: |
-          echo "The string is: ${{ steps.friendly_reminder.outputs.content }}"
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            .github/workflows/link-issues.md
 
       - uses: nearform-actions/github-action-check-linked-issues@v1
         id: check-linked-issues
         with:
           exclude-branches: "release/**, dependabot/**"
-          custom-body-comment: "${{ steps.friendly_reminder.outputs.content }}"
+          comment: false
 
-      # OPTIONAL: Use the output from the `check-linked-issues` step
       - name: Get the output
         run: echo "Linked issues - ${{ steps.check-linked-issues.outputs.linked_issues_count }} found."
+
+      - name: Create comment from markdown file
+        if: steps.check-linked-issues.outputs.linked_issues_count < 1
+        uses: GrantBirki/comment@v2.0.10
+        with:
+          file: .github/workflows/link-issues.md
