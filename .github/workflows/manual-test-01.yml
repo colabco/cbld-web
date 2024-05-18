@@ -1,0 +1,36 @@
+on: workflow_dispatch
+
+jobs:
+  check_pull_requests:
+    runs-on: ubuntu-latest
+    name: Check linked issues
+    permissions:
+      issues: read
+      pull-requests: write
+    steps:
+      - name: Set friendly reminder
+        id: friendly_reminder
+        run: |
+          {
+            echo 'MESSAGE_STR<<EOF'
+            :wave: Hey, looks like you forgot to [link an issue!](https://docs.github.com/en/enterprise-cloud@latest/get-started/writing-on-github/working-with-advanced-formatting/using-keywords-in-issues-and-pull-requests#linking-a-pull-request-to-an-issue).
+            - Please visit the link above to learn how to do so. This is to ensure that merging your PR will  **automatically close an issue**.
+            - :warning: If you do **NOT** want related issue(s) to automatically close, do **not** use any of the **github keywords** like `closes`, `resolves`, `fixes`, etc. in your PR description.
+            - :bulb: You can still reference a related issue using `#`, e.g. _This PR is related to #n'_.
+            - :nerd_face: Reach out to project admins if you have any questions! :smile:
+            echo EOF
+          } >> "$GITHUB_OUTPUT"
+
+      - name: display string
+        run: |
+          echo "The string is: ${{ steps.friendly_reminder.outputs.MESSAGE_STR }}"
+
+      - uses: nearform-actions/github-action-check-linked-issues@v1
+        id: check-linked-issues
+        with:
+          exclude-branches: "release/**, dependabot/**"
+          custom-body-comment: "${{ steps.friendly_reminder.outputs.MESSAGE_STR }}"
+
+      # OPTIONAL: Use the output from the `check-linked-issues` step
+      - name: Get the output
+        run: echo "Linked issues - ${{ steps.check-linked-issues.outputs.linked_issues_count }} found."
