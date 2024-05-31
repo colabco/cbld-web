@@ -1,9 +1,9 @@
 import React from "react";
 
-import BurgerMenu from "./components/Navigation/BurgerMenu";
-import Logo from "./components/Navigation/Logo";
-import NavigationLinks from "./components/Navigation/NavigationLinks";
-import UserProfile from "./components/Navigation/UserProfile";
+import BurgerMenu from "./BurgerMenu";
+import Logo from "./Logo";
+import NavigationLinks from "./NavigationLinks";
+import UserProfile from "./UserProfile";
 
 const Navbar = () => {
   return (
